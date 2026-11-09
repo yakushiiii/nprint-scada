@@ -28,6 +28,7 @@ class Stats {
         uint64_t tcp = 0;
         uint64_t udp = 0;
         uint64_t icmp = 0;
+        uint64_t iec104 = 0;
 };
 
 #endif

@@ -25,6 +25,7 @@ void Stats::update(bool parsed, uint8_t network_layer, uint8_t transport_layer) 
         if(transport_layer == IPPROTO_TCP) tcp++;
         if(transport_layer == IPPROTO_UDP) udp++;
         if(transport_layer == IPPROTO_ICMP) icmp++;
+        //if (application_layer ==  )
     }
 }
 

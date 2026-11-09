@@ -29,6 +29,7 @@ class Config {
     uint8_t tcp;
     uint8_t udp;
     uint8_t icmp;
+    uint8_t iec104;
     uint32_t payload;
 
     /*  Output modification */
