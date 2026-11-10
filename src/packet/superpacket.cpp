@@ -85,6 +85,7 @@ bool SuperPacket::process_v4(void *pkt) {
         pload_len =
             ipv4_header.get_total_len() -
             (tcp_header.get_header_len() + ipv4_header.get_header_len());
+        process_tcp_payload(pload, pload_len);
     } else if (ipv4_header.get_ip_proto() == IPPROTO_UDP) {
         udph =
             (struct udphdr *)((u_char *)ipv4h + ipv4_header.get_header_len());
@@ -127,10 +128,11 @@ bool SuperPacket::process_v6(void *pkt) {
         tcph =
             (struct tcphdr *)((u_char *)ipv6h + ipv6_header.get_header_len());
         tcp_header.set_raw(tcph);
-        pload = tcph + tcp_header.get_header_len();
+        pload = ((u_char *)tcph + tcp_header.get_header_len());
         pload_len =
             ipv6_header.get_total_len() -
             (tcp_header.get_header_len() + ipv6_header.get_header_len());
+        process_tcp_payload(pload, pload_len);
     } else if (ipv6_header.get_ip_proto() == IPPROTO_UDP) {
         udph =
             (struct udphdr *)((u_char *)ipv6h + ipv6_header.get_header_len());
@@ -172,6 +174,8 @@ void SuperPacket::get_bitstring(Config *c, std::vector<int8_t> &to_fill) {
         udp_header.get_bitstring(to_fill, c->fill_with);
     if (c->icmp == 1)
         icmp_header.get_bitstring(to_fill, c->fill_with);
+    if (c->iec104 == 1)
+        iec104_header.get_bitstring(to_fill, c->fill_with);
     if (c->payload != 0)
         payload.get_bitstring(to_fill, c->fill_with);
 }
@@ -182,10 +186,10 @@ void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len){
 
     uint8_t *bytes = (uint8_t *)pload;
     
-    if (pload_len > 6){
+    if (pload_len >= 6){
         if ((port_src == "2404" || port_dst == "2404") && (bytes[0] == 0x68) && (bytes[1] >= 4 && bytes[1] <= 253)){
             iec104_header.set_raw(pload);
-
+            iec104_header.set_info(pload_len);
         }
     }
     

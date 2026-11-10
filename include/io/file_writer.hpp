@@ -21,6 +21,7 @@
 #include "wlan_header.hpp"
 #include "ethernet_header.hpp"
 #include "icmp_header.hpp"
+#include "iec104_header.hpp"
 #include "ipv4_header.hpp"
 #include "ipv6_header.hpp"
 #include "payload.hpp"
