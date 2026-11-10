@@ -39,7 +39,7 @@ void PCAPParser::packet_handler(u_char *user_data,
         packet = (uint8_t *) packet + LINUX_COOKED_HEADER_SIZE;
     }
 
-    sp = pcp->process_packet((void *)packet);
+    sp = pcp->process_packet((void *)packet, pkthdr->caplen);
     if (sp == NULL)
         return;
     rts = pcp->process_timestamp(pkthdr->ts);

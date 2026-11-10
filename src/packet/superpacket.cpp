@@ -21,10 +21,10 @@ void SuperPacket::print_packet(FILE *out) {
     fprintf(out, "}\n");
 }
 
-SuperPacket::SuperPacket(void *pkt, uint32_t max_payload_len, uint32_t linktype) {
+SuperPacket::SuperPacket(void *pkt, uint32_t max_payload_len, uint32_t linktype, uint32_t caplen) {
     struct radiotap_header *radiotaph;
     struct wlan_header * wlanh;
-
+    uint16_t etype;
     struct ip *ipv4h;
     struct ether_header *eth;
 
@@ -42,6 +42,16 @@ SuperPacket::SuperPacket(void *pkt, uint32_t max_payload_len, uint32_t linktype)
     default:
         this->max_payload_len = max_payload_len;
         eth = (struct ether_header *)pkt;
+        etype = ntohs(eth->ether_type);
+
+        /*########### GOOSE handling ###########*/
+        if (etype == 0x88B8 && caplen > sizeof(struct ether_header)) {
+            ethernet_header.set_raw(eth);
+            payload.set_raw((u_char *)pkt + sizeof(struct ether_header));
+            payload.set_info(caplen - sizeof(struct ether_header), max_payload_len);
+            parseable = true;
+            break;
+        }
 
         /* Check if packet has an ethernet header */
         if ((ntohs(eth->ether_type) == ETHERTYPE_IP) ||
@@ -212,6 +222,16 @@ std::string SuperPacket::get_index(Config *c) {
     /* Wlan TX Mac Address */
     else if (c->output_index == 5) {
         rv = get_tx_mac_address();
+    }
+
+    /* MAC fallback */
+    if (rv == "NULL" && ethernet_header.get_raw() != NULL){
+        struct ether_header *eth = (struct ether_header *)ethernet_header.get_raw();
+        const uint8_t *mac = (c->output_index == 1) ? eth->ether_dhost : eth->ether_shost;
+        char buf[18];
+        snprintf(buf, sizeof(buf), "%02x:%02x:%02x:%02x:%02x:%02x",
+                 mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+        rv = buf;
     }
 
     return rv;

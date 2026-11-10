@@ -28,7 +28,7 @@
 
 class SuperPacket {
   public:
-    SuperPacket(void *pkt, uint32_t max_payload_len, uint32_t linktype);
+    SuperPacket(void *pkt, uint32_t max_payload_len, uint32_t linktype, uint32_t caplen = 0);
     std::string get_port(bool src);
     std::string get_ip_address(bool src);
     std::string get_tx_mac_address();

@@ -6,6 +6,7 @@
  */
 
 #include "file_parser.hpp"
+#include <cstdint>
 
 #define CUSTOM_OUTPUT_RESERVE_SIZE 50
 #define BITSTRING_RESERVE_SIZE 10000
@@ -37,7 +38,7 @@ void FileParser::tokenize_line(std::string line,
         to_fill.push_back(token);
 }
 
-SuperPacket *FileParser::process_packet(void *pkt) {
+SuperPacket *FileParser::process_packet(void *pkt, uint32_t caplen) {
     bool parseable;
     SuperPacket *sp;
     std::string src_ip;
@@ -46,7 +47,7 @@ SuperPacket *FileParser::process_packet(void *pkt) {
     uint8_t network_layer, transport_layer;
 
     to_fill.clear();
-    sp = new SuperPacket(pkt, config.payload, linktype);
+    sp = new SuperPacket(pkt, config.payload, linktype, caplen);
     parseable = sp->check_parseable();
     if (!parseable) {
         delete sp;

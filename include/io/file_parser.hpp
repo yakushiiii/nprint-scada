@@ -38,7 +38,7 @@ class FileParser {
     void print_stats();
     void set_conf(Config c);
     void set_filewriter(FileWriter *fw);
-    SuperPacket *process_packet(void *pkt);
+    SuperPacket *process_packet(void *pkt, uint32_t caplen = 0);
     void tokenize_line(std::string line, std::vector<std::string> &to_fill,
                        char delimiter = ',');
 
