@@ -20,6 +20,7 @@
 #include "wlan_header.hpp"
 #include "ethernet_header.hpp"
 #include "icmp_header.hpp"
+#include "iec104_header.hpp"
 #include "ipv4_header.hpp"
 #include "ipv6_header.hpp"
 #include "payload.hpp"
@@ -43,6 +44,7 @@ class SuperPacket {
   private:
     bool process_v4(void *pkt);
     bool process_v6(void *pkt);
+    void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len);
 
     bool parseable;
     uint32_t max_payload_len;
@@ -51,6 +53,7 @@ class SuperPacket {
     EthHeader ethernet_header;
     IPv4Header ipv4_header;
     IPv6Header ipv6_header;
+    IEC104Header iec104_header;
     TCPHeader tcp_header;
     UDPHeader udp_header;
     ICMPHeader icmp_header;

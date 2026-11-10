@@ -17,6 +17,7 @@ void SuperPacket::print_packet(FILE *out) {
     tcp_header.print_header(out);
     udp_header.print_header(out);
     icmp_header.print_header(out);
+    iec104_header.print_header(out);
     payload.print_header(out);
     fprintf(out, "}\n");
 }
@@ -175,6 +176,22 @@ void SuperPacket::get_bitstring(Config *c, std::vector<int8_t> &to_fill) {
         payload.get_bitstring(to_fill, c->fill_with);
 }
 
+void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len){
+    std::string port_src = get_port(true); //true for getting source port
+    std::string port_dst = get_port(false); //false for getting destination port
+
+    uint8_t *bytes = (uint8_t *)pload;
+    
+    if (pload_len > 6){
+        if ((port_src == "2404" || port_dst == "2404") && (bytes[0] == 0x68) && (bytes[1] >= 4 && bytes[1] <= 253)){
+            iec104_header.set_raw(pload);
+
+        }
+    }
+    
+}
+
+
 std::string SuperPacket::get_index(Config *c) {
     std::string rv;
     /* Source IP */
@@ -271,3 +288,4 @@ std::tuple<uint8_t, uint8_t> SuperPacket::get_packet_type() {
 
     return std::tuple<uint8_t, uint8_t>(network_layer, transport_layer);
 }
+

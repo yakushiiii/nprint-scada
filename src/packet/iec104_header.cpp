@@ -8,7 +8,7 @@ void *IEC104Header::get_raw() {
 }
 
 void IEC104Header::set_raw(void *raw) {
-    this->raw = (struct iec104 *)raw;
+    this->raw = (uint8_t *)raw;
 }
 
 void IEC104Header::print_header(FILE *out) {
@@ -37,14 +37,4 @@ void IEC104Header::get_bitstring_header(std::vector<std::string> &to_fill) {
     v.push_back(std::make_tuple("iec104_cksum", 16));
 
     PacketHeader::make_bitstring_header(v, to_fill);
-}
-
-std::string IEC104Header::get_port(bool src) {
-    if (raw == NULL) {
-        return "NULL";
-    } else if (src) {
-        return std::to_string(ntohs(raw->uh_sport));
-    } else {
-        return std::to_string(ntohs(raw->uh_dport));
-    }
 }
