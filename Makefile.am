@@ -11,7 +11,7 @@ nprint_SOURCES = src/conf.cpp src/nprint.cpp src/io/file_parser.cpp src/io/file_
 				src/packet/wlan_header.cpp src/packet/radiotap_header.cpp \
 				src/stats.cpp \
 				include/conf.hpp include/io/file_parser.hpp include/io/file_writer.hpp \
-				include/packet/icmp_header.hpp include/packet/ipv4_header.hpp include/packet/ipv6_header.hpp include/packet/iec104_header.hpp include/packet/c371118_header.hpp \
+				include/packet/icmp_header.hpp include/packet/ipv4_header.hpp include/packet/ipv6_header.hpp include/packet/iec104_header.hpp include/packet/c37118_header.hpp \
 				include/packet/packet_header.hpp include/packet/payload.hpp include/io/pcap_parser.hpp \
 				include/io/stringfile_parser.hpp include/packet/superpacket.hpp include/packet/tcp_header.hpp \
 				include/packet/udp_header.hpp include/io/nprint_parser.hpp \
