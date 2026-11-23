@@ -113,6 +113,7 @@ am_nprint_OBJECTS = src/conf.$(OBJEXT) src/nprint.$(OBJEXT) \
 	src/packet/ipv4_header.$(OBJEXT) \
 	src/packet/ipv6_header.$(OBJEXT) \
 	src/packet/iec104_header.$(OBJEXT) \
+	src/packet/c37118_header.$(OBJEXT) \
 	src/packet/packet_header.$(OBJEXT) \
 	src/packet/payload.$(OBJEXT) src/io/pcap_parser.$(OBJEXT) \
 	src/io/stringfile_parser.$(OBJEXT) \
@@ -148,6 +149,7 @@ am__depfiles_remade = src/$(DEPDIR)/conf.Po src/$(DEPDIR)/nprint.Po \
 	src/packet/$(DEPDIR)/ethernet_header.Po \
 	src/packet/$(DEPDIR)/icmp_header.Po \
 	src/packet/$(DEPDIR)/iec104_header.Po \
+	src/packet/$(DEPDIR)/c37118_header.Po \
 	src/packet/$(DEPDIR)/ipv4_header.Po \
 	src/packet/$(DEPDIR)/ipv6_header.Po \
 	src/packet/$(DEPDIR)/packet_header.Po \
@@ -507,6 +509,8 @@ src/packet/ipv6_header.$(OBJEXT): src/packet/$(am__dirstamp) \
 	src/packet/$(DEPDIR)/$(am__dirstamp)
 src/packet/iec104_header.$(OBJEXT): src/packet/$(am__dirstamp) \
 	src/packet/$(DEPDIR)/$(am__dirstamp)
+src/packet/c37118_header.$(OBJEXT): src/packet/$(am__dirstamp) \
+	src/packet/$(DEPDIR)/$(am__dirstamp)
 src/packet/packet_header.$(OBJEXT): src/packet/$(am__dirstamp) \
 	src/packet/$(DEPDIR)/$(am__dirstamp)
 src/packet/payload.$(OBJEXT): src/packet/$(am__dirstamp) \
@@ -555,6 +559,7 @@ include src/io/$(DEPDIR)/stringfile_parser.Po # am--include-marker
 include src/packet/$(DEPDIR)/ethernet_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/icmp_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/iec104_header.Po # am--include-marker
+include src/packet/$(DEPDIR)/c37118_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/ipv4_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/ipv6_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/packet_header.Po # am--include-marker
@@ -974,6 +979,7 @@ distclean: distclean-am
 	-rm -f src/packet/$(DEPDIR)/ethernet_header.Po
 	-rm -f src/packet/$(DEPDIR)/icmp_header.Po
 	-rm -f src/packet/$(DEPDIR)/iec104_header.Po
+	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv4_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv6_header.Po
 	-rm -f src/packet/$(DEPDIR)/packet_header.Po
@@ -1041,6 +1047,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/packet/$(DEPDIR)/ethernet_header.Po
 	-rm -f src/packet/$(DEPDIR)/icmp_header.Po
 	-rm -f src/packet/$(DEPDIR)/iec104_header.Po
+	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv4_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv6_header.Po
 	-rm -f src/packet/$(DEPDIR)/packet_header.Po
