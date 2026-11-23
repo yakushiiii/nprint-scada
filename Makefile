@@ -146,10 +146,10 @@ am__depfiles_remade = src/$(DEPDIR)/conf.Po src/$(DEPDIR)/nprint.Po \
 	src/io/$(DEPDIR)/nprint_parser.Po \
 	src/io/$(DEPDIR)/pcap_parser.Po \
 	src/io/$(DEPDIR)/stringfile_parser.Po \
+	src/packet/$(DEPDIR)/c37118_header.Po \
 	src/packet/$(DEPDIR)/ethernet_header.Po \
 	src/packet/$(DEPDIR)/icmp_header.Po \
 	src/packet/$(DEPDIR)/iec104_header.Po \
-	src/packet/$(DEPDIR)/c37118_header.Po \
 	src/packet/$(DEPDIR)/ipv4_header.Po \
 	src/packet/$(DEPDIR)/ipv6_header.Po \
 	src/packet/$(DEPDIR)/packet_header.Po \
@@ -266,7 +266,7 @@ AWK = awk
 CC = gcc -std=gnu23
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
-CPPFLAGS = -I/opt/homebrew/opt/argp-standalone/include
+CPPFLAGS = 
 CSCOPE = cscope
 CTAGS = ctags
 CXX = g++
@@ -285,7 +285,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LDFLAGS = -L/opt/homebrew/opt/argp-standalone/lib
+LDFLAGS = 
 LIBOBJS = 
 LIBS = -lpcap 
 LTLIBOBJS = 
@@ -363,7 +363,7 @@ top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = subdir-objects
 nprint_SOURCES = src/conf.cpp src/nprint.cpp src/io/file_parser.cpp src/io/file_writer.cpp \
-				src/packet/icmp_header.cpp src/packet/ipv4_header.cpp src/packet/ipv6_header.cpp src/packet/iec104_header.cpp \
+				src/packet/icmp_header.cpp src/packet/ipv4_header.cpp src/packet/ipv6_header.cpp src/packet/iec104_header.cpp src/packet/c37118_header.cpp \
 				src/packet/packet_header.cpp src/packet/payload.cpp src/io/pcap_parser.cpp \
 				src/io/stringfile_parser.cpp src/packet/superpacket.cpp src/packet/tcp_header.cpp \
 				src/packet/udp_header.cpp src/io/nprint_parser.cpp \
@@ -371,7 +371,7 @@ nprint_SOURCES = src/conf.cpp src/nprint.cpp src/io/file_parser.cpp src/io/file_
 				src/packet/wlan_header.cpp src/packet/radiotap_header.cpp \
 				src/stats.cpp \
 				include/conf.hpp include/io/file_parser.hpp include/io/file_writer.hpp \
-				include/packet/icmp_header.hpp include/packet/ipv4_header.hpp include/packet/ipv6_header.hpp include/packet/iec104_header.hpp \
+				include/packet/icmp_header.hpp include/packet/ipv4_header.hpp include/packet/ipv6_header.hpp include/packet/iec104_header.hpp include/packet/c37118_header.hpp \
 				include/packet/packet_header.hpp include/packet/payload.hpp include/io/pcap_parser.hpp \
 				include/io/stringfile_parser.hpp include/packet/superpacket.hpp include/packet/tcp_header.hpp \
 				include/packet/udp_header.hpp include/io/nprint_parser.hpp \
@@ -556,10 +556,10 @@ include src/io/$(DEPDIR)/file_writer.Po # am--include-marker
 include src/io/$(DEPDIR)/nprint_parser.Po # am--include-marker
 include src/io/$(DEPDIR)/pcap_parser.Po # am--include-marker
 include src/io/$(DEPDIR)/stringfile_parser.Po # am--include-marker
+include src/packet/$(DEPDIR)/c37118_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/ethernet_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/icmp_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/iec104_header.Po # am--include-marker
-include src/packet/$(DEPDIR)/c37118_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/ipv4_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/ipv6_header.Po # am--include-marker
 include src/packet/$(DEPDIR)/packet_header.Po # am--include-marker
@@ -976,10 +976,10 @@ distclean: distclean-am
 	-rm -f src/io/$(DEPDIR)/nprint_parser.Po
 	-rm -f src/io/$(DEPDIR)/pcap_parser.Po
 	-rm -f src/io/$(DEPDIR)/stringfile_parser.Po
+	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ethernet_header.Po
 	-rm -f src/packet/$(DEPDIR)/icmp_header.Po
 	-rm -f src/packet/$(DEPDIR)/iec104_header.Po
-	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv4_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv6_header.Po
 	-rm -f src/packet/$(DEPDIR)/packet_header.Po
@@ -1044,10 +1044,10 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/io/$(DEPDIR)/nprint_parser.Po
 	-rm -f src/io/$(DEPDIR)/pcap_parser.Po
 	-rm -f src/io/$(DEPDIR)/stringfile_parser.Po
+	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ethernet_header.Po
 	-rm -f src/packet/$(DEPDIR)/icmp_header.Po
 	-rm -f src/packet/$(DEPDIR)/iec104_header.Po
-	-rm -f src/packet/$(DEPDIR)/c37118_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv4_header.Po
 	-rm -f src/packet/$(DEPDIR)/ipv6_header.Po
 	-rm -f src/packet/$(DEPDIR)/packet_header.Po

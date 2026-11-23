@@ -23,7 +23,6 @@ class Config {
     /* Protocol flags */
     uint8_t radiotap;
     uint8_t wlan;
-    uint8_t c37118;
     uint8_t eth;
     uint8_t ipv4;
     uint8_t ipv6;
@@ -31,6 +30,7 @@ class Config {
     uint8_t udp;
     uint8_t icmp;
     uint8_t iec104;
+    uint8_t c37118;
     uint32_t payload;
 
     /*  Output modification */

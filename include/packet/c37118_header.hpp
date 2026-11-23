@@ -16,7 +16,7 @@ class C37118Header : public PacketHeader {
     void get_bitstring_header(std::vector<std::string> &to_fill);
     
     /* Header Specific */
-    void set_info(uint32_t iec104_bytes);
+    void set_info(uint32_t c37118_bytes);
 
   private:
     uint8_t *raw = NULL;

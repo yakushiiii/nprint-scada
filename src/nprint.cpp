@@ -50,7 +50,7 @@ static struct argp_option options[] = {
     {"udp", 'u', 0, 0, "include udp headers"},
     {"icmp", 'i', 0, 0, "include icmp headers"},
     {"iec104", 'I', 0, 0, "include IEC 60870-5-104 headers (TCP 2404)"},
-    {"c37118", 'C3', 0, 0, "include C37.118 headers"},
+    {"c37118", 'E', 0, 0, "include C37.118 headers"},
     {"payload", 'p', "PAYLOAD_SIZE", 0, "include n bytes of payload"},
     {"absolute_timestamps", 'A', 0, 0, "include absolute timestmap field"},
     {"relative_timestamps", 'R', 0, 0, "include relative timestamp field"},
@@ -234,7 +234,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
     case 'I':
         arguments->iec104 = 1;
         break;
-    case 'C3':
+    case 'E':
         arguments->c37118 = 1;
         break;
     case 'p':
