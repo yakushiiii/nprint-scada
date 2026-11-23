@@ -72,6 +72,7 @@ FileWriter::build_bitstring_header(std::vector<std::string> header) {
     UDPHeader udp;
     ICMPHeader icmp;
     IEC104Header iec104;
+    C37118Header c37118;
     std::vector<std::string> compressed_header;
 
     prefix_len = header.size();
@@ -96,6 +97,8 @@ FileWriter::build_bitstring_header(std::vector<std::string> header) {
         icmp.get_bitstring_header(header);
     if (config.iec104 == 1)
         iec104.get_bitstring_header(header);
+    if (config.c37118 == 1)
+        c37118.get_bitstring_header(header);
     if (config.payload != 0)
         p.get_bitstring_header(header);
 

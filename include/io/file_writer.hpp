@@ -19,6 +19,7 @@
 #include "conf.hpp"
 #include "radiotap_header.hpp"
 #include "wlan_header.hpp"
+#include "c37118_header.hpp"
 #include "ethernet_header.hpp"
 #include "icmp_header.hpp"
 #include "iec104_header.hpp"

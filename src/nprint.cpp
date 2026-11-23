@@ -50,6 +50,7 @@ static struct argp_option options[] = {
     {"udp", 'u', 0, 0, "include udp headers"},
     {"icmp", 'i', 0, 0, "include icmp headers"},
     {"iec104", 'I', 0, 0, "include IEC 60870-5-104 headers (TCP 2404)"},
+    {"c37118", 'C3', 0, 0, "include C37.118 headers"},
     {"payload", 'p', "PAYLOAD_SIZE", 0, "include n bytes of payload"},
     {"absolute_timestamps", 'A', 0, 0, "include absolute timestmap field"},
     {"relative_timestamps", 'R', 0, 0, "include relative timestamp field"},
@@ -140,6 +141,18 @@ iec104 iec104_orig_addr    8
 iec104 iec104_common_addr 16
 iec104 iec104_ioa         24
 
+# C37.118
+c37118 c37118_sync        8
+c37118 c37118_reserved    1
+c37118 c37118_frametype   3
+c37118 c37118_version     4
+c37118 c37118_framesize  16
+c37118 c37118_idcode     16
+c37118 c37118_soc        32
+c37118 c37118_timequal    8
+c37118 c37118_fracsec    24
+c37118 c37118_stat_cmd   16
+
 # Payload
 payload payload_bit n
 
@@ -220,6 +233,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
         break;
     case 'I':
         arguments->iec104 = 1;
+        break;
+    case 'C3':
+        arguments->c37118 = 1;
         break;
     case 'p':
         arguments->payload = atoi(arg);
