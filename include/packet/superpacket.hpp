@@ -44,7 +44,7 @@ class SuperPacket {
   private:
     bool process_v4(void *pkt);
     bool process_v6(void *pkt);
-    void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len);
+    void process_tcp_payload(void *pload, uint32_t pload_len);
 
     bool parseable;
     uint32_t max_payload_len;
