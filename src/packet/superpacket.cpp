@@ -192,7 +192,7 @@ void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len){
     uint8_t *bytes = (uint8_t *)pload;
     
     if (pload_len >= 6){
-        if ((port_src == "2404" || port_dst == "2404") && (bytes[0] == 0x68) && (bytes[1] >= 4 && bytes[1] <= 253)){
+        if ((port_src == "2404" || port_dst == "2404") && (bytes[0] == 0x68) && (bytes[1] >= 4 && bytes[1] <= 253)){ //it is possible that these are not the ports used
             iec104_header.set_raw(pload);
             iec104_header.set_info(pload_len);
         }
@@ -200,7 +200,7 @@ void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len){
 
     if(pload_len >= 16){
         uint32_t framesize = ((uint32_t)bytes[2] << 8) | bytes[3];
-        if ((port_src == "4712" || port_dst == "4712") 
+        if ((port_src == "4712" || port_dst == "4712") //it is possible that these are not the ports used
         && (bytes[0] == 0xAA) 
         && (bytes[1] & 0x80) == 0
         && ((bytes[1] >> 4) & 0x07) <= 5
@@ -221,7 +221,7 @@ void SuperPacket::process_udp_payload(void *pload, uint32_t pload_len){
 
     if (pload_len >= 16){
         uint32_t framesize = ((uint32_t)bytes[2] << 8) | bytes[3];
-        if ((port_src == "4713" || port_dst == "4713") 
+        if ((port_src == "4713" || port_dst == "4713") //it is possible that these are not the ports used
         && (bytes[0] == 0xAA)
         && (bytes[1] & 0x80) == 0
         && ((bytes[1] >> 4) & 0x07) <= 5
