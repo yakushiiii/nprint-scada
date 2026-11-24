@@ -67,6 +67,7 @@ sudo make install
 make
 sudo make install
 ```
+If nPrint misses packets, check if the default ports are used for the protocol
 
 ## Citing nPrint
 
