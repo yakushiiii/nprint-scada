@@ -196,11 +196,21 @@ void SuperPacket::process_tcp_payload(void *pload, uint32_t pload_len){
             iec104_header.set_raw(pload);
             iec104_header.set_info(pload_len);
         }
-        if ((port_src == "4712" || port_dst == "4712") && (bytes[0] == 0xAA) && ((((uint32_t)bytes[2] << 8)|bytes[3]) >= 4 && (((uint32_t)bytes[2] << 8)|bytes[3]) <= 253)){
+    }
+
+    if(pload_len >= 16){
+        uint32_t framesize = ((uint32_t)bytes[2] << 8) | bytes[3];
+        if ((port_src == "4712" || port_dst == "4712") 
+        && (bytes[0] == 0xAA) 
+        && (bytes[1] & 0x80) == 0
+        && ((bytes[1] >> 4) & 0x07) <= 5
+        && (bytes[1] & 0x0F) >= 1 && (bytes[1] & 0x0F) <= 2
+        && (framesize >= 16)){
             c37118_header.set_raw(pload);
             c37118_header.set_info(pload_len);
         }
-    } 
+    }
+    
 }
 
 void SuperPacket::process_udp_payload(void *pload, uint32_t pload_len){
@@ -208,9 +218,15 @@ void SuperPacket::process_udp_payload(void *pload, uint32_t pload_len){
     std::string port_dst = get_port(false); //false for getting destination port
 
     uint8_t *bytes = (uint8_t *)pload;
-    
-    if (pload_len >= 6){
-        if ((port_src == "4713" || port_dst == "4713") && (bytes[0] == 0xAA) && ((((uint32_t)bytes[2] << 8)|bytes[3]) >= 4 && (((uint32_t)bytes[2] << 8)|bytes[3]) <= 253)){
+
+    if (pload_len >= 16){
+        uint32_t framesize = ((uint32_t)bytes[2] << 8) | bytes[3];
+        if ((port_src == "4713" || port_dst == "4713") 
+        && (bytes[0] == 0xAA)
+        && (bytes[1] & 0x80) == 0
+        && ((bytes[1] >> 4) & 0x07) <= 5
+        && (bytes[1] & 0x0F) >= 1 && (bytes[1] & 0x0F) <= 2 
+        && (framesize >= 16 && framesize <= pload_len)){
             c37118_header.set_raw(pload);
             c37118_header.set_info(pload_len);
         }
