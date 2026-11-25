@@ -68,6 +68,12 @@ make
 sudo make install
 ```
 
+**Goose:**
+set payload limit with -p
+````bash 
+./nprint -P example.pcapng -e -p 200 -f "ether proto 0x88b8" -W output.csv
+````
+
 ## Citing nPrint
 
 ```
